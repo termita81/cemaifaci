@@ -74,7 +74,7 @@ namespace CeMaiFaci
         private void InitialiseTimer()
         {
             tmrTimer.Enabled = true;
-            tmrTimer.Interval = 1000 * 18;
+            tmrTimer.Interval = 1000 * 60 * 30;
         }
 
         private void Save()
