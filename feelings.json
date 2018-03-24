@@ -1,0 +1,85 @@
+[
+  {
+    "Name": "Bad",
+    "Items": [
+      "Bored",
+      "Busy",
+      "Stressed",
+      "Tired"
+    ],
+    "Color": [142, 217, 174]
+  },
+  {
+    "Name": "Surprised",
+    "Items": [
+      "Startled",
+      "Confused",
+      "Amazed",
+      "Excited"
+    ],
+    "Color": [ 188, 162, 209 ]
+  },
+  {
+    "Name": "Happy",
+    "Items": [
+      "Playful",
+      "Content",
+      "Interested",
+      "Proud",
+      "Accepted",
+      "Powerful",
+      "Peaceful",
+      "Trusting",
+      "Optimistics"
+    ],
+    "Color": [ 255, 255, 143 ]
+  },
+  {
+    "Name": "Sad",
+    "Items": [
+      "Lonely",
+      "Vulnerable",
+      "Despair",
+      "Guilty",
+      "Depressed",
+      "Hurt"
+    ],
+    "Color": [ 143, 189, 225 ]
+  },
+  {
+    "Name": "Disgusted",
+    "Items": [
+      "Disapproving",
+      "Disapointed",
+      "Awful",
+      "Repelled"
+    ],
+    "Color": [ 143, 143, 143 ]
+  },
+  {
+    "Name": "Angry",
+    "Items": [
+      "Let down",
+      "Humiliated",
+      "Bitter",
+      "Mad",
+      "Aggressive",
+      "Frustrated",
+      "Distant",
+      "Critical"
+    ],
+    "Color": [ 255, 143, 142 ]
+  },
+  {
+    "Name": "Fearful",
+    "Items": [
+      "Scared",
+      "Anxious",
+      "Insecure",
+      "Weak",
+      "Rejected",
+      "Threatened"
+    ],
+    "Color": [ 255, 222, 141 ]
+  }
+]
