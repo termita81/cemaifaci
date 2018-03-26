@@ -18,14 +18,15 @@ namespace CeMaiFaci
     {
         private string RootDir = Path.GetDirectoryName(Assembly.GetEntryAssembly().Location);// Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
 
-        private string LogFileName = "log.json";
+        private readonly string LogFileName = "log.json";
+        private readonly string FeelingFileName = "feelings.json";
+        private readonly string DateStringFormat = "yyyy-MMM-dd";
+        private readonly string TimeStringFormat = "hh:mm tt";
         private string LogFile;
-        private string FeelingFileName = "feelings.json";
         private string FeelingFile;
         private DateTime TheDate;
-        private bool TooltipShown;
-        private string DateStringFormat = "yyyy-MMM-dd";
-        private string TimeStringFormat = "hh:mm tt";
+        private bool TooltipShown = false;
+        private DateTime NextAppearanceDateTime;
 
         public MainForm()
         {
@@ -34,8 +35,9 @@ namespace CeMaiFaci
             FeelingFile = Path.Combine(RootDir, FeelingFileName);
 
             InitializeFeelings()
-                .ContinueWith(t => { InitialiseTimer(); })
                 .ConfigureAwait(false);
+
+            lblTime.Text = $"Este ora {(TheDate = DateTime.Now).ToString("HH:mm")}";
         }
 
         private async Task InitializeFeelings()
@@ -73,8 +75,10 @@ namespace CeMaiFaci
 
         private void InitialiseTimer()
         {
+            var interval = 1000 * 60 * 30;
             tmrTimer.Enabled = true;
-            tmrTimer.Interval = 1000 * 60 * 30;
+            tmrTimer.Interval = interval;
+            NextAppearanceDateTime = DateTime.Now.AddMilliseconds(interval);
         }
 
         private void Save()
@@ -131,7 +135,7 @@ namespace CeMaiFaci
             }
         }
         
-        private void NotifyIcon_DoubleClick(object sender, System.EventArgs e)
+        private void notifyIcon_DoubleClick(object sender, System.EventArgs e)
         {
             ShowIt();
         }
@@ -171,52 +175,64 @@ namespace CeMaiFaci
         {
             var form = new LogForm();
             string content = null;
-            //using (StreamReader sr = new StreamReader(LogFile))
-            //{
-            //    content = await sr.ReadToEndAsync();
-            //}
+            using (StreamReader sr = new StreamReader(LogFile))
+            {
+                content = await sr.ReadToEndAsync();
+            }
 
-            //var log = JsonConvert.DeserializeObject<List<LogEntry>>(content);
-            //var entryGroups = log.GroupBy(w => w.TheDate.Date)
-            //    .OrderByDescending(w => w.Key);
-            //var listView = form.LogItemsListView;
-            //var richTextBox = form.LogItemsRichTextBox;
+            var log = JsonConvert.DeserializeObject<List<LogEntry>>(content);
+            var entryGroups = log.GroupBy(w => w.TheDate.Date)
+                //.OrderByDescending(w => w.Key);
+                .OrderBy(w => w.Key);
+            var listView = form.LogItemsListView;
+            listView.Clear();
+            var richTextBox = form.LogItemsRichTextBox;
+            richTextBox.Clear();
+            var first = true;
 
-            //foreach (var entryGroup in entryGroups)
-            //{
-            //    var header = entryGroup.Key.ToString(DateStringFormat);
-            //    var group = new ListViewGroup
-            //    {
-            //        Header = header
-            //    };
-            //    richTextBox.AppendText($"\n{header}");
-            //    //listView.Groups.Add(group);
+            foreach (var entryGroup in entryGroups)
+            {
+                var header = entryGroup.Key.ToString(DateStringFormat);
+                var group = new ListViewGroup
+                {
+                    Header = header
+                };
+                richTextBox.AppendText($"{ (first ? "" : "\n") }{header}");
+                //listView.Groups.Add(group);
 
-            //    var items = entryGroup.OrderByDescending(w => w.TheDate);
+                var items = entryGroup
+                    //.OrderByDescending(w => w.TheDate);
+                    .OrderBy(w => w.TheDate);
 
-            //    foreach (var entry in items)
-            //    {
-            //        var time = entry.TheDate.ToString(TimeStringFormat);
-            //        var text = $"{time}: faceam '{entry.Doing}', simteam: '{string.Join(", ", entry.Feelings)}'{(!string.IsNullOrEmpty(entry.MyOwnFeelings) ? ", in cuvintele mele: '" + entry.MyOwnFeelings + "'" : "")}";
-            //        //listView.Items.Add(new ListViewItem
-            //        //{
-            //        //    Text = text,
-            //        //    Group = group
-            //        //});
-            //        richTextBox.AppendText($"\n\t{ text}");
-            //    }
-            //}
+                foreach (var entry in items)
+                {
+                    var time = entry.TheDate.ToString(TimeStringFormat);
+                    richTextBox.AppendText($"\n    {time}:");
+                    if (!string.IsNullOrEmpty(entry.Doing))
+                    {
+                        richTextBox.AppendText($"\n        Do: {entry.Doing}");
+                    }
+                    if (entry.Feelings.Any())
+                    {
+                        richTextBox.AppendText($"\n        Feel: {string.Join(", ", entry.Feelings)}");
+                    }
+                    if (!string.IsNullOrEmpty(entry.MyOwnFeelings)) {
+                        richTextBox.AppendText($"\n        Comment: {entry.MyOwnFeelings}");
+                    }
+                    //listView.Items.Add(new ListViewItem
+                    //{
+                    //    Text = text,
+                    //    Group = group
+                    //});
+                }
+            }
 
             form.Show();
         }
 
-        private void TheForm_Shown(object sender, EventArgs e)
-        {
-            lblTime.Text = $"Este ora {(TheDate = DateTime.Now).ToString("HH:mm")}";
-        }
-
         private void ShowIt()
         {
+            lblTime.Text = $"Este ora {(TheDate = DateTime.Now).ToString("HH:mm")}";
             tmrTimer.Enabled = false;
             Show();
             this.WindowState = FormWindowState.Normal;
@@ -238,6 +254,18 @@ namespace CeMaiFaci
         private async void tmsiShowLog_Click(object sender, EventArgs e)
         {
             await ShowLog();
+        }
+
+        private void notifyIcon_MouseMove(object sender, MouseEventArgs e)
+        {
+            var unit = "minute";
+            var remaining = (int)((NextAppearanceDateTime - DateTime.Now).TotalMinutes);
+            if (remaining == 0)
+            {
+                remaining = (int)((NextAppearanceDateTime - DateTime.Now).TotalSeconds);
+                unit = "secunde";
+            }
+            notifyIcon.Text = $"Inca { remaining } { unit }";
         }
     }
 }

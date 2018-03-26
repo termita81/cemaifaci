@@ -40,6 +40,7 @@
             this.notifyIcon = new System.Windows.Forms.NotifyIcon(this.components);
             this.ctxMSTray = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.tsmiShow = new System.Windows.Forms.ToolStripMenuItem();
+            this.tmsiShowLog = new System.Windows.Forms.ToolStripMenuItem();
             this.tmsiQuit = new System.Windows.Forms.ToolStripMenuItem();
             this.btnLater = new System.Windows.Forms.Button();
             this.btnSave = new System.Windows.Forms.Button();
@@ -52,7 +53,6 @@
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.tmrTimer = new System.Windows.Forms.Timer(this.components);
             this.btnLog = new System.Windows.Forms.Button();
-            this.tmsiShowLog = new System.Windows.Forms.ToolStripMenuItem();
             this.ctxMSTray.SuspendLayout();
             this.grpFeel.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -75,7 +75,8 @@
             this.notifyIcon.ContextMenuStrip = this.ctxMSTray;
             this.notifyIcon.Icon = ((System.Drawing.Icon)(resources.GetObject("notifyIcon.Icon")));
             this.notifyIcon.Text = "Ce mai faci?";
-            this.notifyIcon.DoubleClick += new System.EventHandler(this.NotifyIcon_DoubleClick);
+            this.notifyIcon.DoubleClick += new System.EventHandler(this.notifyIcon_DoubleClick);
+            this.notifyIcon.MouseMove += new System.Windows.Forms.MouseEventHandler(this.notifyIcon_MouseMove);
             // 
             // ctxMSTray
             // 
@@ -84,20 +85,27 @@
             this.tmsiShowLog,
             this.tmsiQuit});
             this.ctxMSTray.Name = "ctxMSTray";
-            this.ctxMSTray.Size = new System.Drawing.Size(181, 92);
+            this.ctxMSTray.Size = new System.Drawing.Size(151, 70);
             this.ctxMSTray.Text = "Ce mai faci?";
             // 
             // tsmiShow
             // 
             this.tsmiShow.Name = "tsmiShow";
-            this.tsmiShow.Size = new System.Drawing.Size(180, 22);
+            this.tsmiShow.Size = new System.Drawing.Size(150, 22);
             this.tsmiShow.Text = "Arata fereastra";
             this.tsmiShow.Click += new System.EventHandler(this.tsmiShow_Click);
+            // 
+            // tmsiShowLog
+            // 
+            this.tmsiShowLog.Name = "tmsiShowLog";
+            this.tmsiShowLog.Size = new System.Drawing.Size(150, 22);
+            this.tmsiShowLog.Text = "Arata istoricul";
+            this.tmsiShowLog.Click += new System.EventHandler(this.tmsiShowLog_Click);
             // 
             // tmsiQuit
             // 
             this.tmsiQuit.Name = "tmsiQuit";
-            this.tmsiQuit.Size = new System.Drawing.Size(180, 22);
+            this.tmsiQuit.Size = new System.Drawing.Size(150, 22);
             this.tmsiQuit.Text = "Iesi";
             this.tmsiQuit.Click += new System.EventHandler(this.tmsiQuit_Click);
             // 
@@ -238,13 +246,6 @@
             this.btnLog.UseVisualStyleBackColor = true;
             this.btnLog.Click += new System.EventHandler(this.btnLog_Click);
             // 
-            // tmsiShowLog
-            // 
-            this.tmsiShowLog.Name = "tmsiShowLog";
-            this.tmsiShowLog.Size = new System.Drawing.Size(180, 22);
-            this.tmsiShowLog.Text = "Arata istoricul";
-            this.tmsiShowLog.Click += new System.EventHandler(this.tmsiShowLog_Click);
-            // 
             // MainForm
             // 
             this.AcceptButton = this.btnSave;
@@ -264,7 +265,6 @@
             this.MaximizeBox = false;
             this.Name = "MainForm";
             this.Text = "Ce mai faci?";
-            this.Shown += new System.EventHandler(this.TheForm_Shown);
             this.Resize += new System.EventHandler(this.TheForm_Resize);
             this.ctxMSTray.ResumeLayout(false);
             this.grpFeel.ResumeLayout(false);

@@ -50,7 +50,6 @@
             // 
             // lvLog
             // 
-            this.lvLog.Dock = System.Windows.Forms.DockStyle.Fill;
             listViewGroup1.Header = "111111";
             listViewGroup1.Name = "111111";
             listViewGroup2.Header = "222222";
@@ -89,21 +88,23 @@
             listViewItem7,
             listViewItem8,
             listViewItem9});
-            this.lvLog.Location = new System.Drawing.Point(0, 0);
+            this.lvLog.Location = new System.Drawing.Point(666, 416);
             this.lvLog.Name = "lvLog";
-            this.lvLog.Size = new System.Drawing.Size(1067, 554);
+            this.lvLog.Size = new System.Drawing.Size(401, 138);
             this.lvLog.TabIndex = 0;
             this.lvLog.UseCompatibleStateImageBehavior = false;
             this.lvLog.View = System.Windows.Forms.View.SmallIcon;
+            this.lvLog.Visible = false;
             // 
             // rtLog
             // 
-            this.rtLog.Location = new System.Drawing.Point(32, 438);
+            this.rtLog.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.rtLog.Location = new System.Drawing.Point(0, 0);
             this.rtLog.Name = "rtLog";
-            this.rtLog.Size = new System.Drawing.Size(612, 23);
+            this.rtLog.ReadOnly = true;
+            this.rtLog.Size = new System.Drawing.Size(1067, 554);
             this.rtLog.TabIndex = 1;
             this.rtLog.Text = "";
-            this.rtLog.Visible = false;
             // 
             // LogForm
             // 
@@ -113,7 +114,7 @@
             this.Controls.Add(this.rtLog);
             this.Controls.Add(this.lvLog);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "LogForm";
             this.Text = "Istoric";
             this.ResumeLayout(false);
