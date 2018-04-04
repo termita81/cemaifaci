@@ -105,6 +105,7 @@
             this.rtLog.Size = new System.Drawing.Size(1067, 554);
             this.rtLog.TabIndex = 1;
             this.rtLog.Text = "";
+            this.rtLog.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.rtLog_KeyPress);
             // 
             // LogForm
             // 

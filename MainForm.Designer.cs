@@ -30,12 +30,12 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
-            System.Windows.Forms.ListViewGroup listViewGroup1 = new System.Windows.Forms.ListViewGroup("Group 1", System.Windows.Forms.HorizontalAlignment.Left);
-            System.Windows.Forms.ListViewGroup listViewGroup2 = new System.Windows.Forms.ListViewGroup("Group 2", System.Windows.Forms.HorizontalAlignment.Left);
-            System.Windows.Forms.ListViewItem listViewItem1 = new System.Windows.Forms.ListViewItem("Item 1 1000000 dfg sfg sdfgsdfgsdfgsdfg");
-            System.Windows.Forms.ListViewItem listViewItem2 = new System.Windows.Forms.ListViewItem("Item 2 1000000");
-            System.Windows.Forms.ListViewItem listViewItem3 = new System.Windows.Forms.ListViewItem("Item 3 1000000");
-            System.Windows.Forms.ListViewItem listViewItem4 = new System.Windows.Forms.ListViewItem("Item 4 1000000");
+            System.Windows.Forms.ListViewGroup listViewGroup5 = new System.Windows.Forms.ListViewGroup("Group 1", System.Windows.Forms.HorizontalAlignment.Left);
+            System.Windows.Forms.ListViewGroup listViewGroup6 = new System.Windows.Forms.ListViewGroup("Group 2", System.Windows.Forms.HorizontalAlignment.Left);
+            System.Windows.Forms.ListViewItem listViewItem9 = new System.Windows.Forms.ListViewItem("Item 1 1000000 dfg sfg sdfgsdfgsdfgsdfg");
+            System.Windows.Forms.ListViewItem listViewItem10 = new System.Windows.Forms.ListViewItem("Item 2 1000000");
+            System.Windows.Forms.ListViewItem listViewItem11 = new System.Windows.Forms.ListViewItem("Item 3 1000000");
+            System.Windows.Forms.ListViewItem listViewItem12 = new System.Windows.Forms.ListViewItem("Item 4 1000000");
             this.lblTime = new System.Windows.Forms.Label();
             this.notifyIcon = new System.Windows.Forms.NotifyIcon(this.components);
             this.ctxMSTray = new System.Windows.Forms.ContextMenuStrip(this.components);
@@ -111,7 +111,7 @@
             // 
             // btnLater
             // 
-            this.btnLater.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnLater.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.btnLater.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.btnLater.Location = new System.Drawing.Point(145, 674);
             this.btnLater.Margin = new System.Windows.Forms.Padding(4);
@@ -189,26 +189,26 @@
             // lvFeelings
             // 
             this.lvFeelings.CheckBoxes = true;
-            listViewGroup1.Header = "Group 1";
-            listViewGroup1.Name = "Group 1";
-            listViewGroup2.Header = "Group 2";
-            listViewGroup2.Name = "Group 2";
+            listViewGroup5.Header = "Group 1";
+            listViewGroup5.Name = "Group 1";
+            listViewGroup6.Header = "Group 2";
+            listViewGroup6.Name = "Group 2";
             this.lvFeelings.Groups.AddRange(new System.Windows.Forms.ListViewGroup[] {
-            listViewGroup1,
-            listViewGroup2});
-            listViewItem1.Group = listViewGroup1;
-            listViewItem1.StateImageIndex = 0;
-            listViewItem2.Group = listViewGroup1;
-            listViewItem2.StateImageIndex = 0;
-            listViewItem3.Group = listViewGroup2;
-            listViewItem3.StateImageIndex = 0;
-            listViewItem4.Group = listViewGroup2;
-            listViewItem4.StateImageIndex = 0;
+            listViewGroup5,
+            listViewGroup6});
+            listViewItem9.Group = listViewGroup5;
+            listViewItem9.StateImageIndex = 0;
+            listViewItem10.Group = listViewGroup5;
+            listViewItem10.StateImageIndex = 0;
+            listViewItem11.Group = listViewGroup6;
+            listViewItem11.StateImageIndex = 0;
+            listViewItem12.Group = listViewGroup6;
+            listViewItem12.StateImageIndex = 0;
             this.lvFeelings.Items.AddRange(new System.Windows.Forms.ListViewItem[] {
-            listViewItem1,
-            listViewItem2,
-            listViewItem3,
-            listViewItem4});
+            listViewItem9,
+            listViewItem10,
+            listViewItem11,
+            listViewItem12});
             this.lvFeelings.Location = new System.Drawing.Point(12, 23);
             this.lvFeelings.Margin = new System.Windows.Forms.Padding(4);
             this.lvFeelings.Name = "lvFeelings";
@@ -261,6 +261,8 @@
             this.Controls.Add(this.btnLater);
             this.Controls.Add(this.lblTime);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(4);
             this.MaximizeBox = false;
             this.Name = "MainForm";

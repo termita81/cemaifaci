@@ -32,5 +32,12 @@ namespace CeMaiFaci
                 return rtLog;
             }
         }
+
+        private void rtLog_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            var key = e.KeyChar;
+            if (key == '\u001b')
+                Close();
+        }
     }
 }

@@ -197,7 +197,14 @@ namespace CeMaiFaci
                 {
                     Header = header
                 };
-                richTextBox.AppendText($"{ (first ? "" : "\n") }{header}");
+                if (first)
+                {
+                    first = false;
+                    richTextBox.AppendText($"{header}");
+                } else
+                {
+                    richTextBox.AppendText($"\n\n{header}");
+                }
                 //listView.Groups.Add(group);
 
                 var items = entryGroup
