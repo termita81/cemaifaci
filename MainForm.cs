@@ -249,11 +249,11 @@ namespace CeMaiFaci
         private void HideIt()
         {
             notifyIcon.Visible = true;
-            if (!TooltipShown)
-            {
-                notifyIcon.ShowBalloonTip(1000);
-                TooltipShown = true;
-            }            
+            //if (!TooltipShown)
+            //{
+            //    notifyIcon.ShowBalloonTip(1000);
+            //    TooltipShown = true;
+            //}            
             Hide();
             InitialiseTimer();
         }
